@@ -1,0 +1,50 @@
+{
+    "emacs-overlay": {
+        "branch": "master",
+        "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",
+        "homepage": "",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "4a055e0e8bbf7c2b304bd671d94843ae3fe8f55b",
+        "sha256": "0aad4l8z7war9w9s4j5s2sx91br8b768p65az2vfgpm8qm5q998p",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/4a055e0e8bbf7c2b304bd671d94843ae3fe8f55b.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "melpa-check": {
+        "branch": "v3",
+        "description": "Check your Emacs package before publishing it to MELPA",
+        "homepage": "",
+        "owner": "akirak",
+        "repo": "melpa-check",
+        "rev": "3c80738c5ef2c06772780831ca6d22b181fb5ffc",
+        "sha256": "1ddn84yqp6xn8cywv3k5l5k4wsfrn6xwk3y70g7gic04nr51y7ga",
+        "type": "tarball",
+        "url": "https://github.com/akirak/melpa-check/archive/3c80738c5ef2c06772780831ca6d22b181fb5ffc.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "niv": {
+        "branch": "master",
+        "description": "Easy dependency management for Nix projects",
+        "homepage": "https://github.com/nmattia/niv",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "f73bf8d584148677b01859677a63191c31911eae",
+        "sha256": "0jlmrx633jvqrqlyhlzpvdrnim128gc81q5psz2lpp2af8p8q9qs",
+        "type": "tarball",
+        "url": "https://github.com/nmattia/niv/archive/f73bf8d584148677b01859677a63191c31911eae.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "nixos-19.09",
+        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
+        "homepage": "https://github.com/NixOS/nixpkgs",
+        "owner": "NixOS",
+        "repo": "nixpkgs-channels",
+        "rev": "35eda4aede5c9c90c6dfc5c4f83cdac7cae59028",
+        "sha256": "047gkqd304vc07r8kgf13443waaxmhy4skkgj3i2x19cjw7qvl78",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/35eda4aede5c9c90c6dfc5c4f83cdac7cae59028.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}
