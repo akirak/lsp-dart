@@ -33,6 +33,8 @@ in  [ Package::{
         , "dart-mode"
         ]
       , testDrivers = [ TestDriver.ert ]
+      , testDependencies = [ "el-mock" ]
+      , testExcludes = [ "**/test-helper?(s).el" ]
       , mainFile = Some "lsp-dart.el"
       , recipe =
           ''
