@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "akirak",
         "repo": "melpa-check",
-        "rev": "dd6b70b28a68a815a126898641bfd26f8390a873",
-        "sha256": "0i6wv5k3k58cqq91cqcacpbz7skdiy57bbbd43vwxpknwhf11x86",
+        "rev": "58aaaec5dbc6f24d655dcefe6ae3a8929778877d",
+        "sha256": "16pan7yly5fp811b7asx2b0bd4caq11wqfmz2cj2sl0blhvphfp4",
         "type": "tarball",
-        "url": "https://github.com/akirak/melpa-check/archive/dd6b70b28a68a815a126898641bfd26f8390a873.tar.gz",
+        "url": "https://github.com/akirak/melpa-check/archive/58aaaec5dbc6f24d655dcefe6ae3a8929778877d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
