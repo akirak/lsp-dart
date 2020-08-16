@@ -221,7 +221,7 @@ FLUTTER_ROOT environment variable."
 
 (defmacro lsp-dart-assert (test-form message)
   "Assert TEST-FORM return non-nil otherwise prints MESSAGE."
-  `(when (not ,test-form)
+  `(unless ,test-form
      (error "Assertion failed: %s" ,message)))
 
 (defun lsp-dart-assert-sdk-min-version (version)
