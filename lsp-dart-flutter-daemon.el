@@ -60,10 +60,10 @@
       (with-current-buffer buffer
         (unless (derived-mode-p 'lsp-dart-flutter-daemon-mode)
           (lsp-dart-flutter-daemon-mode)))
-      (remove-hook 'comint-output-filter-functions #'lsp-dart-flutter-daemon--handle-responses)
-      (remove-hook 'dap-terminated-hook #'lsp-dart-flutter-daemon--reset-current-device)
-      (add-hook 'comint-output-filter-functions #'lsp-dart-flutter-daemon--handle-responses)
-      (add-hook 'dap-terminated-hook #'lsp-dart-flutter-daemon--reset-current-device)
+      (remove-hook 'comint-output-filter-functions #'lsp-dart-flutter-daemon-handle-responses)
+      (remove-hook 'dap-terminated-hook #'lsp-dart-flutter-daemon-reset-current-device)
+      (add-hook 'comint-output-filter-functions #'lsp-dart-flutter-daemon-handle-responses)
+      (add-hook 'dap-terminated-hook #'lsp-dart-flutter-daemon-reset-current-device)
       (lsp-dart-flutter-daemon--send "device.enable"))))
 
 (defun lsp-dart-flutter-daemon--build-command (id method &optional params)
@@ -87,7 +87,7 @@ PARAMS is the optional method params."
          (split-string it "\n")
          (-map (lambda (el) (lsp-seq-first (lsp--read-json el))) it))))
 
-(defun lsp-dart-flutter-daemon--handle-responses (raw-response)
+(defun lsp-dart-flutter-daemon-handle-responses (raw-response)
   "Handle Flutter daemon response from RAW-RESPONSE."
   (-map (-lambda ((&FlutterDaemonResponse :id :event? :result?
                                           :params? (params &as &FlutterDaemonResponseParams? :level? :message?)))
@@ -161,7 +161,7 @@ of this command."
                        (cons id (list :callback callback)))
           (lsp-dart-flutter-daemon--send "emulator.launch" params callback))))))
 
-(defun lsp-dart-flutter-daemon--reset-current-device (_session)
+(defun lsp-dart-flutter-daemon-reset-current-device (_session)
   "Reset the current device."
   (setq lsp-dart-flutter-daemon-current-device nil))
 

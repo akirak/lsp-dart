@@ -179,7 +179,7 @@ NAMES arg is optional and are the group of tests representing a test name."
       (unless (seq-empty-p children)
         (lsp-dart-code-lens--add-test buffer children concatened-names)))))
 
-(lsp-defun lsp-dart--main-code-lens-check ((&OutlineNotification :uri :outline (&Outline :children)))
+(lsp-defun lsp-dart-main-code-lens-check ((&OutlineNotification :uri :outline (&Outline :children)))
   "Check URI and outline for main method adding lens to it."
   (-let* ((buffer (find-buffer-visiting (lsp--uri-to-path uri)))
           (main-outline (lsp-dart-code-lens--find-main-outline children)))
@@ -190,7 +190,7 @@ NAMES arg is optional and are the group of tests representing a test name."
           (save-excursion
             (lsp-dart-code-lens--build-main-overlay buffer main-outline)))))))
 
-(lsp-defun lsp-dart--test-code-lens-check ((&OutlineNotification :uri :outline (&Outline :children)))
+(lsp-defun lsp-dart-test-code-lens-check ((&OutlineNotification :uri :outline (&Outline :children)))
   "Check URI and outline for test adding lens to it."
   (when (lsp-dart-test-file-p uri)
     (when-let (buffer (find-buffer-visiting (lsp--uri-to-path uri)))
@@ -207,11 +207,11 @@ NAMES arg is optional and are the group of tests representing a test name."
   nil nil nil
   (cond
    (lsp-dart-main-code-lens-mode
-    (add-hook 'lsp-dart-outline-arrived-hook #'lsp-dart--main-code-lens-check nil t))
+    (add-hook 'lsp-dart-outline-arrived-hook #'lsp-dart-main-code-lens-check nil t))
    (t
     (progn
       (remove-overlays (point-min) (point-max) 'lsp-dart-main-code-lens t)
-      (remove-hook 'lsp-dart-outline-arrived-hook #'lsp-dart--main-code-lens-check t)))))
+      (remove-hook 'lsp-dart-outline-arrived-hook #'lsp-dart-main-code-lens-check t)))))
 
 (define-minor-mode lsp-dart-test-code-lens-mode
   "Mode for displaying code lens on main methods."
@@ -225,7 +225,7 @@ NAMES arg is optional and are the group of tests representing a test name."
     (lsp-dart-define-key "t L" #'lsp-dart-debug-last-test)
     (lsp-dart-define-key "t a" #'lsp-dart-run-all-tests)
     (lsp-dart-define-key "t v" #'lsp-dart-visit-last-test)
-    (add-hook 'lsp-dart-outline-arrived-hook #'lsp-dart--test-code-lens-check nil t))
+    (add-hook 'lsp-dart-outline-arrived-hook #'lsp-dart-test-code-lens-check nil t))
    (t
     (lsp-dart-define-key "t t" 'ignore)
     (lsp-dart-define-key "t T" 'ignore)
@@ -235,7 +235,7 @@ NAMES arg is optional and are the group of tests representing a test name."
     (lsp-dart-define-key "t a" 'ignore)
     (lsp-dart-define-key "t v" 'ignore)
     (remove-overlays (point-min) (point-max) 'lsp-dart-test-code-lens t)
-    (remove-hook 'lsp-dart-outline-arrived-hook #'lsp-dart--test-code-lens-check t))))
+    (remove-hook 'lsp-dart-outline-arrived-hook #'lsp-dart-test-code-lens-check t))))
 
 (provide 'lsp-dart-code-lens)
 ;;; lsp-dart-code-lens.el ends here

@@ -229,7 +229,7 @@ Focus on it if IGNORE-FOCUS? is nil."
         (set-window-dedicated-p window t)))
     (lsp-dart-log "No Flutter outline data found")))
 
-(lsp-defun lsp-dart--outline-check ((notification &as &OutlineNotification :uri))
+(lsp-defun lsp-dart-outline-check ((notification &as &OutlineNotification :uri))
   "Outline notification handling from WORKSPACE.
 NOTIFICATION is outline notification data received from server.
 It updates the outline view if it already exists."
@@ -239,7 +239,7 @@ It updates the outline view if it already exists."
        (when (get-buffer-window lsp-dart--outline-buffer-name)
          (lsp-dart-outline--show-outline t)))))
 
-(lsp-defun lsp-dart--flutter-outline-check ((notification &as &FlutterOutlineNotification :uri))
+(lsp-defun lsp-dart-flutter-outline-check ((notification &as &FlutterOutlineNotification :uri))
   "Flutter outline notification handling from WORKSPACE.
 NOTIFICATION is Flutter outline notification data received from server.
 It updates the Flutter outline view if it already exists."
@@ -257,18 +257,18 @@ It updates the Flutter outline view if it already exists."
   nil nil nil
   (cond
    (lsp-dart-outline-mode
-    (add-hook 'lsp-dart-outline-arrived-hook #'lsp-dart--outline-check nil t))
+    (add-hook 'lsp-dart-outline-arrived-hook #'lsp-dart-outline-check nil t))
    (t
-    (remove-hook 'lsp-dart-outline-arrived-hook #'lsp-dart--outline-check t))))
+    (remove-hook 'lsp-dart-outline-arrived-hook #'lsp-dart-outline-check t))))
 
 (define-minor-mode lsp-dart-flutter-outline-mode
   "Mode for updating flutter outline."
   nil nil nil
   (cond
    (lsp-dart-flutter-outline-mode
-    (add-hook 'lsp-dart-flutter-outline-arrived-hook #'lsp-dart--flutter-outline-check nil t))
+    (add-hook 'lsp-dart-flutter-outline-arrived-hook #'lsp-dart-flutter-outline-check nil t))
    (t
-    (remove-hook 'lsp-dart-flutter-outline-arrived-hook #'lsp-dart--flutter-outline-check t))))
+    (remove-hook 'lsp-dart-flutter-outline-arrived-hook #'lsp-dart-flutter-outline-check t))))
 
 ;;;###autoload
 (defun lsp-dart-show-outline (ignore-focus?)

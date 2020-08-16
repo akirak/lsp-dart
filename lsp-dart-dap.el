@@ -250,14 +250,14 @@ Call CALLBACK when the device is chosen and started successfully."
 (defvar lsp-dart-dap--flutter-progress-reporter nil)
 (defvar lsp-dart-dap--flutter-progress-reporter-timer nil)
 
-(defun lsp-dart-dap--cancel-flutter-progress (_debug-session)
+(defun lsp-dart-dap-cancel-flutter-progress (_debug-session)
   "Cancel the Flutter progress timer for DEBUG-SESSION."
   (setq lsp-dart-dap--flutter-progress-reporter nil)
   (when lsp-dart-dap--flutter-progress-reporter-timer
     (cancel-timer lsp-dart-dap--flutter-progress-reporter-timer))
   (setq lsp-dart-dap--flutter-progress-reporter-timer nil))
 
-(add-hook 'dap-terminated-hook #'lsp-dart-dap--cancel-flutter-progress)
+(add-hook 'dap-terminated-hook #'lsp-dart-dap-cancel-flutter-progress)
 
 (defun lsp-dart-dap--flutter-tick-progress-update ()
   "Update the flutter progress reporter."
@@ -301,7 +301,7 @@ Call CALLBACK when the device is chosen and started successfully."
 
 (cl-defmethod dap-handle-event ((_event (eql dart.flutter.firstFrame)) _session _params)
   "Handle debugger uris EVENT for SESSION with PARAMS."
-  (lsp-dart-dap--cancel-flutter-progress (dap--cur-session))
+  (lsp-dart-dap-cancel-flutter-progress (dap--cur-session))
   (lsp-dart-dap-log "App ready!"))
 
 (cl-defmethod dap-handle-event ((_event (eql dart.hotRestartRequest)) _session _params)
