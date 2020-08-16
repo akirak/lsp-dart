@@ -17,24 +17,19 @@ jobs:
           - 26.1
           - 26.2
           - 26.3
+          - 27.1
           - snapshot
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
 
-    - uses: actions/setup-python@v1.1.1
-      with:
-        python-version: '3.6'
-        architecture: 'x64'
+    - uses: cachix/install-nix-action@v10
 
-    - uses: purcell/setup-emacs@master
-      with:
-        version: ${{ matrix.emacs-version }}
-
-    - uses: conao3/setup-cask@master
-      with:
-        version: 0.8.4
+    - uses: akirak/elinter@v4.0-pre-1
+      env:
+        EMACS_VERSION: ${{ matrix.emacs-version }}
 
     - name: Run tests
-      run: 'make ci'
-
+      run: 'make test'
+      env:
+        EMACS_VERSION: ${{ matrix.emacs-version }}
