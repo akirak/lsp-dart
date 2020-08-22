@@ -7,6 +7,6 @@ jobs:
     - uses: cachix/install-nix-action@v10
     - uses: actions/checkout@v2
     - uses: akirak/elinter@v4
-      with:
-        experimental: warn
+      env:
+        ELINTER_ALLOW_WARNINGS: melpazoid
     - run: elinter -t --ert-runner -e latest
